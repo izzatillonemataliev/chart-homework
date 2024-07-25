@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Form from "./components/Form";
+import BarChart from "./components/BarChart";
 import { IoMdMoon, IoMdSunny } from "react-icons/io";
 import "./App.css";
 
@@ -30,29 +31,24 @@ function App() {
   }, [theme]);
 
   return (
-    <div className="min-h-screen p-8 ">
+    <div className="min-h-screen p-8">
       <div className="container mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-white-800 ">devfinder</h1>
+          <h1 className="text-3xl font-bold">devfinder</h1>
           <label className="swap swap-rotate">
-            {/* This hidden checkbox controls the state */}
             <input
               onClick={handleTheme}
               type="checkbox"
               checked={theme === "dark"}
               readOnly
             />
-
-            {/* Sun icon */}
             <IoMdSunny className="swap-on fill-current w-10 h-10" />
-
-            {/* Moon icon */}
             <IoMdMoon className="swap-off fill-current w-10 h-10" />
           </label>
         </div>
         <Form getData={getData} />
         {userData && (
-          <div className="mt-8 p-6 bg-white  shadow-md rounded-lg">
+          <div className="mt-8 p-6 bg-white dark:bg-gray-800 shadow-md rounded-lg">
             <div className="flex items-center mb-6">
               <div className="avatar mr-6">
                 <div className="w-24 rounded-full ring ring-offset-base-100 ring-offset-2 ring-primary">
@@ -60,56 +56,39 @@ function App() {
                 </div>
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-gray-800 ">
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
                   {userData.login}
                 </h2>
-                <p className="text-gray-500 ">
+                <p className="text-gray-500 dark:text-gray-400">
                   {userData.bio || "This profile has no bio"}
                 </p>
-                <p className="text-sm text-gray-400 ">
+                <p className="text-sm text-gray-400 dark:text-gray-500">
                   Joined {new Date(userData.created_at).toDateString()}
                 </p>
               </div>
             </div>
-            <div className="flex justify-around text-center border-t border-gray-200  pt-6">
+            <div className="flex justify-around text-center border-t border-gray-200 dark:border-gray-700 pt-6">
               <div>
-                <h4 className="text-gray-600 ">Repos</h4>
-                <p className="text-lg font-semibold text-gray-800 ">
+                <h4 className="text-gray-600 dark:text-gray-300">Repos</h4>
+                <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">
                   {reposData.length}
                 </p>
               </div>
               <div>
-                <h4 className="text-gray-600 ">Followers</h4>
-                <p className="text-lg font-semibold text-gray-800 ">
+                <h4 className="text-gray-600 dark:text-gray-300">Followers</h4>
+                <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">
                   {userData.followers}
                 </p>
               </div>
               <div>
-                <h4 className="text-gray-600 ">Following</h4>
-                <p className="text-lg font-semibold text-gray-800 ">
+                <h4 className="text-gray-600 dark:text-gray-300">Following</h4>
+                <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">
                   {userData.following}
                 </p>
               </div>
             </div>
             <div className="mt-6">
-              <p className="text-gray-600 ">
-                <span className="font-semibold">Location:</span>{" "}
-                {userData.location || "Not Available"}
-              </p>
-              <p className="text-gray-600 ">
-                <span className="font-semibold">Blog:</span>{" "}
-                <a
-                  href={userData.blog}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {userData.blog || "Not Available"}
-                </a>
-              </p>
-              <p className="text-gray-600 ">
-                <span className="font-semibold">Company:</span>{" "}
-                {userData.company || "Not Available"}
-              </p>
+              <BarChart repos={reposData} />
             </div>
           </div>
         )}
@@ -119,4 +98,3 @@ function App() {
 }
 
 export default App;
-
