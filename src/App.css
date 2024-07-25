@@ -1,0 +1,17 @@
+/* Light mode uchun asosiy dizayn */
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+/* Dark mode uchun dizayn */
+[data-theme='dark'] {
+  --background-color: #1a1a1a;
+  --text-color: #ffffff;
+}
+
+/* Umumiy elementlar uchun CSS */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
