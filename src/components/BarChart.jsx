@@ -24,10 +24,6 @@ const BarChart = ({ repos }) => {
   const options = {
     chart: {
       type: 'bar',
-      background: 'transparent',
-      toolbar: {
-        show: false
-      }
     },
     plotOptions: {
       bar: {
@@ -41,56 +37,27 @@ const BarChart = ({ repos }) => {
     },
     xaxis: {
       categories: languages,
-      labels: {
-        style: {
-          colors: ['#ffffff'],
-          fontSize: '12px'
-        }
-      },
     },
     yaxis: {
       title: {
-        text: 'Repositories',
-        style: {
-          color: '#ffffff',
-          fontSize: '14px'
-        }
-      },
-      labels: {
-        style: {
-          colors: ['#ffffff'],
-          fontSize: '12px'
-        }
+        text: 'Repositories'
       }
     },
     fill: {
-      opacity: 1,
-      colors: ['#00E396']
+      opacity: 1
     },
     tooltip: {
-      theme: 'dark',
       y: {
         formatter: function (val) {
           return val;
         }
-      }
-    },
-    grid: {
-      borderColor: '#40475D'
-    },
-    title: {
-      text: 'Repositories by Language',
-      align: 'center',
-      style: {
-        color: '#ffffff',
-        fontSize: '20px'
       }
     }
   };
 
   return (
     <div>
-      <h2 className="text-center mb-4 text-white">Total Repositories: {repos.length}</h2>
+      <h2 className="text-center mb-4">Total Repositories: {repos.length}</h2>
       <Chart options={options} series={series} type="bar" height="350" />
     </div>
   );
